@@ -1,0 +1,11 @@
+name: SurvivalCreate
+version: 1.0
+author: Krfcm2
+main: fr.survivalmode.Main
+commands:
+  sc:
+    description: Ouvrir le menu 
+    permission: sc.default
+  sc invite:
+    description: Inviter un joueur
+    permission: sc.default
