@@ -6,6 +6,6 @@ commands:
   sc:
     description: Ouvrir le menu 
     permission: sc.default
-  sc invite:
+  scinvite:
     description: Inviter un joueur
     permission: sc.default

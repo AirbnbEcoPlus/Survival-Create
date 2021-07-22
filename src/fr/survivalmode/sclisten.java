@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
+
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -22,29 +22,23 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 
 public class sclisten implements Listener { 
-	 public void onQuitWorld(PlayerChangedWorldEvent event) {
-	        Player player = event.getPlayer();
-	        String name = player.getName();
-	        if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
-	        	Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld");
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld_nether");
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld_the_end");
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld_nether");
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld_the_end");
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");	
-	        }
+	 
 		        
 
 	        	
 	        	
-	        }
+	        
 	        
 			
 			
 	   
 	
+	private Main main;
 	
-	   @EventHandler
+	   public sclisten(Main main) {
+		   this.main = main;
+	}
+	@EventHandler
 	    public void onQuit(PlayerQuitEvent event) {
 	        Player player = event.getPlayer();
 	        String name = player.getName();
@@ -102,7 +96,9 @@ public class sclisten implements Listener {
 					WorldCreator wc_flat = new WorldCreator(name + "SurvivalCreateWorld");
 					wc_flat.environment(World.Environment.NORMAL);
 					wc_flat.type(WorldType.FLAT);
-					wc_flat.createWorld();					
+					wc_flat.createWorld();	
+					this.main.getConfig().set("world.private", name + "SurvivalCreateWorld");
+					this.main.saveConfig();
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");
 					
 					
@@ -112,6 +108,7 @@ public class sclisten implements Listener {
 					
 				}
 			}
+			
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateSeed")) {
 				if(current.getType() == Material.DIRT) {
 					event.setCancelled(true);
@@ -146,6 +143,8 @@ public class sclisten implements Listener {
 					border_the_end.setSize(10000.0);
 					border_the_end.setCenter(0.0, 0.0);
 					player.sendMessage("§2Votre Monde est maintenant charger vous pouvez le rejoindre");
+					this.main.getConfig().set("world.private", name + "SurvivalCreateWorld");
+					this.main.saveConfig();
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world merge " + name + "SurvivalCreateWorld " + name + "SurvivalCreateWorld_the_end " + name + "SurvivalCreateWorld_the_end");
 
 					
@@ -160,11 +159,30 @@ public class sclisten implements Listener {
 					wc_void.environment(World.Environment.NORMAL);
 					wc_void.type(WorldType.NORMAL);
 					wc_void.generator("VoidGenerator");
-					wc_void.createWorld();					
+					wc_void.createWorld();
+					this.main.getConfig().set("world.private", name + "SurvivalCreateWorld");
+					this.main.saveConfig();
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");
 				}
 			}
 			
+			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateInvite")) {
+				if(current.getType() == Material.EMERALD) {
+					player.sendMessage("§2Votre monde est desormait publique");
+					this.main.getConfig().set("world.public", name + "SurvivalCreateWorld_nether");
+					this.main.saveConfig();
+					player.closeInventory();
+			
+			
+	}
+}
+			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateInviteDemande")) {
+				if(current.getType() == Material.EMERALD_BLOCK) {
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tp " + name + " " + main.PlayerTp.get("target"));
+					
+					player.closeInventory();	
+	}
+}
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateMenu")) {
 				if(current.getType() == Material.WATCH) {
 					event.setCancelled(true);
@@ -223,6 +241,22 @@ public class sclisten implements Listener {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world load " + name + "SurvivalCreateWorld");
 					player.sendMessage("Pour inviter des amis ou pour gerer votre monde /sc");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world tp " + name + " " + name + "SurvivalCreateWorld " );
+					
+					
+			
+		
+   			}
+  }
+			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateMenu")) {
+				if(current.getType() == Material.BED) {
+					event.setCancelled(true);
+					player.closeInventory();
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld_nether");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld_the_end");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld_nether");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld_the_end");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");
 					
 					
 			
@@ -352,11 +386,46 @@ public class sclisten implements Listener {
 				if(current.getType() == Material.JACK_O_LANTERN) {
 					event.setCancelled(true);
 					player.closeInventory();
-					player.sendMessage("§2Pour rejoindre une personne dans son monde §b/tpa (nom du joueur)");
+					Inventory invinv = Bukkit.createInventory(null, 9, "§8SurvivalCreateInvite");
+					
+					ItemStack invite = new ItemStack(Material.BED, 1);
+					ItemMeta inviteM = invite.getItemMeta();
+					inviteM.setDisplayName("Inviter un ami");
+					invite.setItemMeta(inviteM);
+					
+					ItemStack publicworld = new ItemStack(Material.COMPASS, 1);
+					ItemMeta publicworldM = publicworld.getItemMeta();
+					publicworldM.setDisplayName("Rejoindre un Monde en Public");
+					publicworld.setItemMeta(publicworldM);
+					
+					ItemStack switchworld = new ItemStack(Material.EMERALD, 1);
+					ItemMeta switchworldM = switchworld.getItemMeta();
+					switchworldM.setDisplayName("Mettre votre monde en public");
+					switchworld.setItemMeta(switchworldM);
+					
+					invinv.setItem(2, invite);
+					invinv.setItem(4, publicworld);
+					invinv.setItem(6, switchworld);
+					player.openInventory(invinv);
 					
 					
 				}
 			}
+			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateInvite")) {
+				if(current.getType() == Material.BED) {
+					event.setCancelled(true);
+					player.closeInventory();
+					player.sendMessage("§2Pour inviter un ami /scinvite (Pseudo du joueur)");
+   			}
+  }
+			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateInvite")) {
+				if(current.getType() == Material.COMPASS) {
+					event.setCancelled(true);
+					player.closeInventory();
+					player.sendMessage("Bientot");
+					
+   			}
+  }
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateMenu")) {
 				if(current.getType() == Material.DIAMOND_CHESTPLATE) {
 					event.setCancelled(true);
