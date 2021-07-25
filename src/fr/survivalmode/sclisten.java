@@ -1,7 +1,6 @@
 package fr.survivalmode;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Difficulty;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -75,15 +74,23 @@ public class sclisten implements Listener {
 					ItemMeta seedFlatM = seedFlat.getItemMeta();
 					seedFlatM.setDisplayName("Monde Plat");
 					seedFlat.setItemMeta(seedFlatM);
+					if(main.VoidGeneratorEnable == true) {
+						ItemStack seedVoid = new ItemStack(Material.BEDROCK, 1);
+						ItemMeta seedVoidM = seedVoid.getItemMeta();
+						seedVoidM.setDisplayName("Monde Vide");
+						seedVoid.setItemMeta(seedVoidM);
+						
+						invseed.setItem(11, seednormal);
+						invseed.setItem(13, seedFlat);
+						invseed.setItem(15, seedVoid);
+						player.openInventory(invseed);
+					}
 					
-					ItemStack seedVoid = new ItemStack(Material.BEDROCK, 1);
-					ItemMeta seedVoidM = seedVoid.getItemMeta();
-					seedVoidM.setDisplayName("Monde Vide");
-					seedVoid.setItemMeta(seedVoidM);
 					
 					invseed.setItem(11, seednormal);
 					invseed.setItem(13, seedFlat);
-					invseed.setItem(15, seedVoid);
+					
+					
 					player.openInventory(invseed);
 
 				}
@@ -92,7 +99,7 @@ public class sclisten implements Listener {
 				if(current.getType() == Material.WOOD_PLATE) {
 					event.setCancelled(true);
 					player.closeInventory();
-					player.sendMessage("§2Votre Monde est en train de se charger");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.loading"));
 					WorldCreator wc_flat = new WorldCreator(name + "SurvivalCreateWorld");
 					wc_flat.environment(World.Environment.NORMAL);
 					wc_flat.type(WorldType.FLAT);
@@ -104,7 +111,7 @@ public class sclisten implements Listener {
 					
 
 					
-					player.sendMessage("§2Votre Monde est maintenant charger vous pouvez le rejoindre");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.loadingsucces"));
 					
 				}
 			}
@@ -113,39 +120,43 @@ public class sclisten implements Listener {
 				if(current.getType() == Material.DIRT) {
 					event.setCancelled(true);
 					player.closeInventory();
-					player.sendMessage("§2Votre Monde est en train de se charger");
-					player.sendMessage("§2Etape 1 sur 3");
-					WorldCreator wc = new WorldCreator(name + "SurvivalCreateWorld");
-					wc.environment(World.Environment.NORMAL);
-					wc.type(WorldType.NORMAL);
-					wc.createWorld();
-                    World world = Bukkit.getWorld(name + "SurvivalCreateWorld");
-					WorldBorder border = world.getWorldBorder();
-					border.setSize(10000.0);
-					border.setCenter(0.0, 0.0);
-					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");
-					player.sendMessage("§2Etape 2 sur 3");
-					WorldCreator wc_nether = new WorldCreator(name + "SurvivalCreateWorld_nether");
-					wc_nether.environment(World.Environment.NETHER);
-					wc_nether.type(WorldType.NORMAL);
-					wc_nether.createWorld();
-                    World world_nether = Bukkit.getWorld(name + "SurvivalCreateWorld_nether");
-					WorldBorder border_nether = world_nether.getWorldBorder();
-					border_nether.setSize(10000.0);
-					border_nether.setCenter(0.0, 0.0);
-					player.sendMessage("§2Etape 3 sur 3");
-					WorldCreator wc_the_end = new WorldCreator(name + "SurvivalCreateWorld_the_end");
-					wc_the_end.environment(World.Environment.THE_END);
-					wc_the_end.type(WorldType.NORMAL);
-					wc_the_end.createWorld();
-                    World world_the_end = Bukkit.getWorld(name + "SurvivalCreateWorld_the_end");
-					WorldBorder border_the_end = world_the_end.getWorldBorder();
-					border_the_end.setSize(10000.0);
-					border_the_end.setCenter(0.0, 0.0);
-					player.sendMessage("§2Votre Monde est maintenant charger vous pouvez le rejoindre");
-					this.main.getConfig().set("world.private", name + "SurvivalCreateWorld");
-					this.main.saveConfig();
-					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world merge " + name + "SurvivalCreateWorld " + name + "SurvivalCreateWorld_the_end " + name + "SurvivalCreateWorld_the_end");
+					
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.loading"));
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.step1"));
+						WorldCreator wc = new WorldCreator(name + "SurvivalCreateWorld");
+						wc.environment(World.Environment.NORMAL);
+						wc.type(WorldType.NORMAL);
+						wc.createWorld();
+	                    World world = Bukkit.getWorld(name + "SurvivalCreateWorld");
+						WorldBorder border = world.getWorldBorder();
+						border.setSize(10000.0);
+						border.setCenter(0.0, 0.0);
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.step2"));
+						WorldCreator wc_nether = new WorldCreator(name + "SurvivalCreateWorld_nether");
+						wc_nether.environment(World.Environment.NETHER);
+						wc_nether.type(WorldType.NORMAL);
+						wc_nether.createWorld();
+	                    World world_nether = Bukkit.getWorld(name + "SurvivalCreateWorld_nether");
+						WorldBorder border_nether = world_nether.getWorldBorder();
+						border_nether.setSize(10000.0);
+						border_nether.setCenter(0.0, 0.0);
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.step3"));
+						WorldCreator wc_the_end = new WorldCreator(name + "SurvivalCreateWorld_the_end");
+						wc_the_end.environment(World.Environment.THE_END);
+						wc_the_end.type(WorldType.NORMAL);
+						wc_the_end.createWorld();
+	                    World world_the_end = Bukkit.getWorld(name + "SurvivalCreateWorld_the_end");
+						WorldBorder border_the_end = world_the_end.getWorldBorder();
+						border_the_end.setSize(10000.0);
+						border_the_end.setCenter(0.0, 0.0);
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.loadingsucces"));
+						this.main.getConfig().set("world.private", name + "SurvivalCreateWorld");
+						this.main.saveConfig();
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world inventory merge " + name + "SurvivalCreateWorld " + name + "SurvivalCreateWorld_nether " + name + "SurvivalCreateWorld_the_end");
+					
+						
+					
 
 					
 				}
@@ -154,7 +165,7 @@ public class sclisten implements Listener {
 				if(current.getType() == Material.BEDROCK) {
 					event.setCancelled(true);
 					player.closeInventory();
-					player.sendMessage("§2Votre Monde est en train de se charger");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.loading"));
 					WorldCreator wc_void = new WorldCreator(name + "SurvivalCreateWorld");
 					wc_void.environment(World.Environment.NORMAL);
 					wc_void.type(WorldType.NORMAL);
@@ -163,14 +174,13 @@ public class sclisten implements Listener {
 					this.main.getConfig().set("world.private", name + "SurvivalCreateWorld");
 					this.main.saveConfig();
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.loadingsucces"));
 				}
 			}
 			
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateInvite")) {
 				if(current.getType() == Material.EMERALD) {
-					player.sendMessage("§2Votre monde est desormait publique");
-					this.main.getConfig().set("world.public", name + "SurvivalCreateWorld_nether");
-					this.main.saveConfig();
+					player.sendMessage("Bientot");
 					player.closeInventory();
 			
 			
@@ -179,7 +189,7 @@ public class sclisten implements Listener {
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateInviteDemande")) {
 				if(current.getType() == Material.EMERALD_BLOCK) {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tp " + name + " " + main.PlayerTp.get("target"));
-					
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.tpaccept"));
 					player.closeInventory();	
 	}
 }
@@ -191,13 +201,13 @@ public class sclisten implements Listener {
 					Inventory invtime = Bukkit.createInventory(null, 27, "§8SurvivalCreateTime");
 					ItemStack day = new ItemStack(Material.JACK_O_LANTERN, 1);
 					ItemMeta dayM = day.getItemMeta();
-					dayM.setDisplayName("Jour");
+					dayM.setDisplayName(main.getConfig().getString("message.menu.items.day"));
 					day.setItemMeta(dayM);
 					
 					
 					ItemStack night = new ItemStack(Material.PUMPKIN, 1);
 					ItemMeta nightM = night.getItemMeta();
-					nightM.setDisplayName("Nuit");
+					nightM.setDisplayName(main.getConfig().getString("message.menu.items.night"));
 					night.setItemMeta(nightM);
 					
 					
@@ -215,8 +225,9 @@ public class sclisten implements Listener {
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						 World worldtime = Bukkit.getWorld(name + "SurvivalCreateWorld");
 						 worldtime.setTime(12000);
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.setnight"));
 					 }else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 				}
 			}
@@ -227,8 +238,9 @@ public class sclisten implements Listener {
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						 World worldtime = Bukkit.getWorld(name + "SurvivalCreateWorld");
 						 worldtime.setTime(0);
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.setday"));
 					 }else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 				}
 			}
@@ -239,9 +251,11 @@ public class sclisten implements Listener {
 					event.setCancelled(true);
 					player.closeInventory();
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world load " + name + "SurvivalCreateWorld");
-					player.sendMessage("Pour inviter des amis ou pour gerer votre monde /sc");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world load " + name + "SurvivalCreateWorld_nether");
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world load " + name + "SurvivalCreateWorld_the_end");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world tp " + name + " " + name + "SurvivalCreateWorld " );
-					
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.tp"));
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.help"));
 					
 			
 		
@@ -257,10 +271,7 @@ public class sclisten implements Listener {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld_nether");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld_the_end");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");
-					
-					
-			
-		
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.quitworld"));
    			}
   }
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateMenu")) {
@@ -270,22 +281,22 @@ public class sclisten implements Listener {
 					Inventory invGamemode = Bukkit.createInventory(null, 9, "§8SurvivalCreateGamemode");
 					ItemStack survival = new ItemStack(Material.CHEST, 1);
 					ItemMeta survivalM = survival.getItemMeta();
-					survivalM.setDisplayName("§aSurvie");
+					survivalM.setDisplayName(main.getConfig().getString("message.menu.items.survival"));
 					survival.setItemMeta(survivalM);
 					
 					ItemStack creative = new ItemStack(Material.BRICK, 1);
 					ItemMeta creativeM = creative.getItemMeta();
-					creativeM.setDisplayName("§aCréatif");
+					creativeM.setDisplayName(main.getConfig().getString("message.menu.items.creative"));
 					creative.setItemMeta(creativeM);
 					
 					ItemStack spectator = new ItemStack(Material.EYE_OF_ENDER, 1);
 					ItemMeta spectatorM = spectator.getItemMeta();
-					spectatorM.setDisplayName("§aSpectateur");
+					spectatorM.setDisplayName(main.getConfig().getString("message.menu.items.spectator"));
 					spectator.setItemMeta(spectatorM);
 					
 					ItemStack adventure = new ItemStack(Material.BOOKSHELF, 1);
 					ItemMeta adventureM = adventure.getItemMeta();
-					adventureM.setDisplayName("§aSpectateur");
+					adventureM.setDisplayName(main.getConfig().getString("message.menu.items.adventure"));
 					adventure.setItemMeta(adventureM);
 					
 					invGamemode.setItem(1, survival);
@@ -301,17 +312,17 @@ public class sclisten implements Listener {
 					player.closeInventory();
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						 player.setGameMode(GameMode.SURVIVAL);
-						 player.sendMessage("§2Vous êtes maintenant en survie");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.survival"));
 					 }else
-						 player.sendMessage("§§Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 				
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld_nether")) {
 						 player.setGameMode(GameMode.SURVIVAL);
-						 player.sendMessage("§2Vous êtes maintenant en survie");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.survival"));
 					 }
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld_the_end")) {
 						 player.setGameMode(GameMode.SURVIVAL);
-						 player.sendMessage("§2Vous êtes maintenant en survie");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.survival"));
 					 }
 				}
 				
@@ -322,18 +333,18 @@ public class sclisten implements Listener {
 					player.closeInventory();
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						 player.setGameMode(GameMode.CREATIVE);
-						 player.sendMessage("§2Vous êtes maintenant en Créatif");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.creative"));
 					 }else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 						
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld_nether")) {
 						 player.setGameMode(GameMode.CREATIVE);
-						 player.sendMessage("§2Vous êtes maintenant en Créatif");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.creative"));
 					 }
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld_the_end")) {
 						 player.setGameMode(GameMode.CREATIVE);
-						 player.sendMessage("§2Vous êtes maintenant en Créatif");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.creative"));
 					 }
 				}
 				
@@ -344,18 +355,18 @@ public class sclisten implements Listener {
 					player.closeInventory();
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						 player.setGameMode(GameMode.SPECTATOR);
-						 player.sendMessage("§2Vous êtes maintenant en Spectateur");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.spectator"));
 					 }else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 						
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld_nether")) {
 						 player.setGameMode(GameMode.SPECTATOR);
-						 player.sendMessage("§2Vous êtes maintenant en Spectateur");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.spectator"));
 					 }
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld_the_end")) {
 						 player.setGameMode(GameMode.SPECTATOR);
-						 player.sendMessage("§2Vous êtes maintenant en Spectateur");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.spectator"));
 					 }
 				}
 				
@@ -366,18 +377,18 @@ public class sclisten implements Listener {
 					player.closeInventory();
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						 player.setGameMode(GameMode.ADVENTURE);
-						 player.sendMessage("§2Vous êtes maintenant en Aventure");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.adventure"));
 					 }else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 						
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld_nether")) {
 						 player.setGameMode(GameMode.ADVENTURE);
-						 player.sendMessage("§2Vous êtes maintenant en Aventure");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.adventure"));
 					 }
 					 if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld_the_end")) {
 						 player.setGameMode(GameMode.ADVENTURE);
-						 player.sendMessage("§2Vous êtes maintenant en Aventure");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.adventure"));
 					 }
 				}
 				
@@ -390,17 +401,17 @@ public class sclisten implements Listener {
 					
 					ItemStack invite = new ItemStack(Material.BED, 1);
 					ItemMeta inviteM = invite.getItemMeta();
-					inviteM.setDisplayName("Inviter un ami");
+					inviteM.setDisplayName(main.getConfig().getString("message.menu.items.invitefriend"));
 					invite.setItemMeta(inviteM);
 					
 					ItemStack publicworld = new ItemStack(Material.COMPASS, 1);
 					ItemMeta publicworldM = publicworld.getItemMeta();
-					publicworldM.setDisplayName("Rejoindre un Monde en Public");
+					publicworldM.setDisplayName(main.getConfig().getString("message.menu.items.joinpublicworld"));
 					publicworld.setItemMeta(publicworldM);
 					
 					ItemStack switchworld = new ItemStack(Material.EMERALD, 1);
 					ItemMeta switchworldM = switchworld.getItemMeta();
-					switchworldM.setDisplayName("Mettre votre monde en public");
+					switchworldM.setDisplayName(main.getConfig().getString("message.menu.items.setpublicworld"));
 					switchworld.setItemMeta(switchworldM);
 					
 					invinv.setItem(2, invite);
@@ -415,17 +426,19 @@ public class sclisten implements Listener {
 				if(current.getType() == Material.BED) {
 					event.setCancelled(true);
 					player.closeInventory();
-					player.sendMessage("§2Pour inviter un ami /scinvite (Pseudo du joueur)");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.invitefriendhelp"));
    			}
   }
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateInvite")) {
 				if(current.getType() == Material.COMPASS) {
 					event.setCancelled(true);
-					player.closeInventory();
 					player.sendMessage("Bientot");
+					player.closeInventory();
+					
 					
    			}
   }
+			
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateMenu")) {
 				if(current.getType() == Material.DIAMOND_CHESTPLATE) {
 					event.setCancelled(true);
@@ -434,23 +447,23 @@ public class sclisten implements Listener {
 					Inventory invdifi = Bukkit.createInventory(null, 27, "§8SurvivalCreateDifficulty");
 					ItemStack peace = new ItemStack(Material.IRON_BLOCK, 1);
 					ItemMeta peaceM = peace.getItemMeta();
-					peaceM.setDisplayName("Paisible");
+					peaceM.setDisplayName(main.getConfig().getString("message.menu.items.peacefull"));
 					peace.setItemMeta(peaceM);
 					
 					
 					ItemStack facile = new ItemStack(Material.GOLD_BLOCK, 1);
 					ItemMeta facileM = facile.getItemMeta();
-					facileM.setDisplayName("Facile");
+					facileM.setDisplayName(main.getConfig().getString("message.menu.items.easy"));
 					facile.setItemMeta(facileM);
 					
 					ItemStack normal = new ItemStack(Material.DIAMOND_BLOCK, 1);
 					ItemMeta normalM = normal.getItemMeta();
-					normalM.setDisplayName("Normal");
+					normalM.setDisplayName(main.getConfig().getString("message.menu.items.normal"));
 					normal.setItemMeta(normalM);
 					
 					ItemStack hard = new ItemStack(Material.EMERALD_BLOCK, 1);
 					ItemMeta hardM = hard.getItemMeta();
-					hardM.setDisplayName("Dificile");
+					hardM.setDisplayName(main.getConfig().getString("message.menu.items.hard"));
 					hard.setItemMeta(hardM);
 					
 					invdifi.setItem(10, peace);
@@ -465,10 +478,10 @@ public class sclisten implements Listener {
 					player.closeInventory();
 					if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						event.setCancelled(true);
-						Bukkit.getWorld(name + "SurvivalCreateWorld").setDifficulty(Difficulty.PEACEFUL);
-						player.sendMessage("§2La difficulté a été changé");
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world difficulty peaceful " + name + "SurvivalCreateWorld");
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.difficultychange"));
 					}else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 				}
 	  }  
@@ -477,10 +490,10 @@ public class sclisten implements Listener {
 					player.closeInventory();
 					if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						event.setCancelled(true);
-						Bukkit.getWorld(name + "SurvivalCreateWorld").setDifficulty(Difficulty.EASY);
-						player.sendMessage("§2La difficulté a été changé");
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world difficulty easy " + name + "SurvivalCreateWorld");
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.difficultychange"));
 					} else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 				}
 	 }
@@ -489,10 +502,10 @@ public class sclisten implements Listener {
 					player.closeInventory();
 					if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						event.setCancelled(true);
-						Bukkit.getWorld(name + "SurvivalCreateWorld").setDifficulty(Difficulty.NORMAL);
-						player.sendMessage("§2La difficulté a été changé");
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world difficulty normal " + name + "SurvivalCreateWorld");
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.difficultychange"));
 					}else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 				}
 	 }
@@ -501,11 +514,11 @@ public class sclisten implements Listener {
 					player.closeInventory();
 					if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 						event.setCancelled(true);
-						Bukkit.getWorld(name + "SurvivalCreateWorld").setDifficulty(Difficulty.HARD);
-						player.sendMessage("§2La difficulté a été changé");
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world difficulty hard " + name + "SurvivalCreateWorld");
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.difficultychange"));
 						
 					}else {
-						 player.sendMessage("§2Vous devez être dans votre monde");
+						 player.sendMessage(main.getConfig().getString("message.menu.answerResponse.notInWorld"));
 					 }
 				}
 	 }
@@ -522,7 +535,7 @@ public class sclisten implements Listener {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world delete " + name + "SurvivalCreateWorld");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world delete " + name + "SurvivalCreateWorld_nether");
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world delete " + name + "SurvivalCreateWorld_the_end");
-					player.sendMessage("§2Votre monde est maintenant supprimé");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.deleteworld"));
 					
 					
    }
@@ -541,22 +554,22 @@ public class sclisten implements Listener {
 					if(player.hasPermission("sc.vip")) {
 						ItemStack  borderdefault = new ItemStack(Material.GLASS, 1);
 						ItemMeta borderdefaultM = borderdefault.getItemMeta();
-						borderdefaultM.setDisplayName("Mettre la limite de votre monde a 10 000 blocs");
+						borderdefaultM.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit1"));
 						borderdefault.setItemMeta(borderdefaultM);
 						
 						ItemStack  bordervip = new ItemStack(Material.IRON_BLOCK, 1);
 						ItemMeta bordervipM = bordervip.getItemMeta();
-						bordervipM.setDisplayName("Mettre la limite de votre monde a 30 000 blocs");
+						bordervipM.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit2"));
 						bordervip.setItemMeta(bordervipM);
 						
 						ItemStack  bordervip2 = new ItemStack(Material.BARRIER, 1);
 						ItemMeta bordervip2M = bordervip2.getItemMeta();
-						bordervip2M.setDisplayName("Mettre la limite de votre monde a 60 000 blocs(Seulement pour les V.I.P+)");
+						bordervip2M.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit3") + "(Seulement pour les " + main.getConfig().getString("message.rank.rank2"));
 						bordervip2.setItemMeta(bordervip2M);
 						
 						ItemStack  bordervip3 = new ItemStack(Material.BARRIER, 1);
 						ItemMeta bordervip3M = bordervip3.getItemMeta();
-						bordervip3M.setDisplayName("Mettre la limite de votre monde a 120 000 blocs(Seulement pour les V.I.P++)");
+						bordervip3M.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit4") + "(Seulement pour les " + main.getConfig().getString("message.rank.rank3"));
 						bordervip3.setItemMeta(bordervip3M);
 						
 						invborder.setItem(10, borderdefault);
@@ -567,22 +580,22 @@ public class sclisten implements Listener {
 						if(player.hasPermission("sc.vip2")) {
 							ItemStack  borderdefaultv2 = new ItemStack(Material.GLASS, 1);
 							ItemMeta borderdefaultMv2 = borderdefaultv2.getItemMeta();
-							borderdefaultMv2.setDisplayName("Mettre la limite de votre monde a 10 000 blocs");
+							borderdefaultMv2.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit1"));
 							borderdefaultv2.setItemMeta(borderdefaultMv2);
 							
 							ItemStack  bordervipv2 = new ItemStack(Material.IRON_BLOCK, 1);
 							ItemMeta bordervipMv2 = bordervipv2.getItemMeta();
-							bordervipMv2.setDisplayName("Mettre la limite de votre monde a 30 000 blocs");
+							bordervipMv2.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit2"));
 							bordervipv2.setItemMeta(bordervipMv2);
 							
 							ItemStack  bordervip2v2 = new ItemStack(Material.GOLD_BLOCK, 1);
 							ItemMeta bordervip2Mv2 = bordervip2v2.getItemMeta();
-							bordervip2Mv2.setDisplayName("Mettre la limite de votre monde a 60 000 blocs");
+							bordervip2Mv2.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit3"));
 							bordervip2v2.setItemMeta(bordervip2Mv2);
 							
 							ItemStack  bordervip3v2 = new ItemStack(Material.BARRIER, 1);
 							ItemMeta bordervip3Mv2 = bordervip3v2.getItemMeta();
-							bordervip3Mv2.setDisplayName("Mettre la limite de votre monde a 120 000 blocs(Seulement pour les V.I.P++)");
+							bordervip3Mv2.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit4") + "(Seulement pour les " + main.getConfig().getString("message.rank.rank3"));
 							bordervip3v2.setItemMeta(bordervip3Mv2);
 							invborder.setItem(10, borderdefaultv2);
 							invborder.setItem(12, bordervipv2);
@@ -592,22 +605,22 @@ public class sclisten implements Listener {
 							if(player.hasPermission("sc.vip3")) {
 								ItemStack  borderdefaultv3 = new ItemStack(Material.GLASS, 1);
 								ItemMeta borderdefaultMv3 = borderdefaultv3.getItemMeta();
-								borderdefaultMv3.setDisplayName("Mettre la limite de votre monde a 10 000 blocs");
+								borderdefaultMv3.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit1"));
 								borderdefaultv3.setItemMeta(borderdefaultMv3);
 								
 								ItemStack  bordervipv3 = new ItemStack(Material.IRON_BLOCK, 1);
 								ItemMeta bordervipMv3 = bordervipv3.getItemMeta();
-								bordervipMv3.setDisplayName("Mettre la limite de votre monde a 30 000 blocs");
+								bordervipMv3.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit2"));
 								bordervipv3.setItemMeta(bordervipMv3);
 								
 								ItemStack  bordervip2v3 = new ItemStack(Material.GOLD_BLOCK, 1);
 								ItemMeta bordervip2Mv3 = bordervip2v3.getItemMeta();
-								bordervip2Mv3.setDisplayName("Mettre la limite de votre monde a 60 000 blocs");
+								bordervip2Mv3.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit3"));
 								bordervip2v3.setItemMeta(bordervip2Mv3);
 								
 								ItemStack  bordervip3v3 = new ItemStack(Material.DIAMOND_BLOCK, 1);
 								ItemMeta bordervip3Mv3 = bordervip3v3.getItemMeta();
-								bordervip3Mv3.setDisplayName("Mettre la limite de votre monde a 120 000 blocs");
+								bordervip3Mv3.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit4"));
 								bordervip3v3.setItemMeta(bordervip3Mv3);
 								invborder.setItem(10, borderdefaultv3);
 								invborder.setItem(12, bordervipv3);
@@ -620,22 +633,22 @@ public class sclisten implements Listener {
 					{
 						ItemStack  borderdefault = new ItemStack(Material.GLASS, 1);
 						ItemMeta borderdefaultM = borderdefault.getItemMeta();
-						borderdefaultM.setDisplayName("Mettre la limite de votre monde a 10 000 blocs");
+						borderdefaultM.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit1"));
 						borderdefault.setItemMeta(borderdefaultM);
 						
 						ItemStack  bordervip = new ItemStack(Material.BARRIER, 1);
 						ItemMeta bordervipM = bordervip.getItemMeta();
-						bordervipM.setDisplayName("Mettre la limite de votre monde a 30 000 blocs(Seulement pour les V.I.P)");
+						bordervipM.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit2") + "(Seulement pour " + main.getConfig().getString("message.rank.rank1"));
 						bordervip.setItemMeta(bordervipM);
 						
 						ItemStack  bordervip2 = new ItemStack(Material.BARRIER, 1);
 						ItemMeta bordervip2M = bordervip2.getItemMeta();
-						bordervip2M.setDisplayName("Mettre la limite de votre monde a 60 000 blocs(Seulement pour les V.I.P+)");
+						bordervip2M.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit3") + "(Seulement pour les " + main.getConfig().getString("message.rank.rank2"));
 						bordervip2.setItemMeta(bordervip2M);
 						
 						ItemStack  bordervip3 = new ItemStack(Material.BARRIER, 1);
 						ItemMeta bordervip3M = bordervip3.getItemMeta();
-						bordervip3M.setDisplayName("Mettre la limite de votre monde a 120 000 blocs(Seulement pour les V.I.P++)");
+						bordervip3M.setDisplayName(main.getConfig().getString("message.menu.items.borderlimit4") + "(Seulement pour les " + main.getConfig().getString("message.rank.rank3"));
 						bordervip3.setItemMeta(bordervip3M);
 						
 						invborder.setItem(10, borderdefault);
@@ -658,7 +671,7 @@ public class sclisten implements Listener {
 						border.setSize(10000.0);
 						border.setCenter(0.0, 0.0);
 						
-						player.sendMessage("§2La limite de votre monde est maintenant de 10 000 blocs");
+						player.sendMessage(main.getConfig().getString("message.menu.answerResponse.borderset1"));
 				 
 					}
     }
@@ -675,7 +688,7 @@ public class sclisten implements Listener {
 					border.setSize(30000.0);
 					border.setCenter(0.0, 0.0);
 					
-					player.sendMessage("§2La limite de votre monde est maintenant de 30 000 blocs");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.borderset2"));
 						}
 						
   }
@@ -692,7 +705,7 @@ public class sclisten implements Listener {
 					border.setSize(60000.0);
 					border.setCenter(0.0, 0.0);
 					
-					player.sendMessage("§2La limite de votre monde est maintenant de 60 000 blocs");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.borderset3"));
 						}
 						
     }
@@ -709,7 +722,7 @@ public class sclisten implements Listener {
 					border.setSize(120000.0);
 					border.setCenter(0.0, 0.0);
 					
-					player.sendMessage("§2La limite de votre monde est maintenant de 120 000 blocs");
+					player.sendMessage(main.getConfig().getString("message.menu.answerResponse.borderset4"));
 						}
 						
     }	   
@@ -718,7 +731,7 @@ public class sclisten implements Listener {
 		if(inv.getName().equalsIgnoreCase("§8SurvivalCreateBorder")) {
 			if(current.getType() == Material.BARRIER) {
 				player.closeInventory();
-				player.sendMessage("§cVous n'avez pas la permission, venez l'acheter sur la boutique §6https://endide-shop.tebex.io/");
+				player.sendMessage(main.getConfig().getString("message.menu.answerResponse.nopermission"));
     }
    }
 

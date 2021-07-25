@@ -10,7 +10,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.survivalmode.Main;
+
 public class SmCreate implements CommandExecutor {
+
+	private Main main;
+	public SmCreate(Main main) {
+		this.main = main;
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
@@ -20,47 +27,47 @@ public class SmCreate implements CommandExecutor {
 			
 			ItemStack  create = new ItemStack(Material.GRASS, 1);
 			ItemMeta createM = create.getItemMeta();
-			createM.setDisplayName("Créer un monde");
+			createM.setDisplayName(main.getConfig().getString("message.menu.items.create"));
 			create.setItemMeta(createM);
 			
 			ItemStack  tp = new ItemStack(Material.ENDER_PEARL, 1);
 			ItemMeta tpM = tp.getItemMeta();
-			tpM.setDisplayName("Se téléporter a votre monde");
+			tpM.setDisplayName(main.getConfig().getString("message.menu.items.teleport"));
 			tp.setItemMeta(tpM);
 			
 			ItemStack  delete = new ItemStack(Material.BARRIER, 1);
 			ItemMeta deleteM = delete.getItemMeta();
-			deleteM.setDisplayName("Supprimer votre monde");
+			deleteM.setDisplayName(main.getConfig().getString("message.menu.items.delete"));
 			delete.setItemMeta(deleteM);
 			
 			ItemStack  playerlist = new ItemStack(Material.JACK_O_LANTERN, 1);
 			ItemMeta playerlistM = playerlist.getItemMeta();
-			playerlistM.setDisplayName("Ouvrir le menu de gestion d'invitation de votre monde");
+			playerlistM.setDisplayName(main.getConfig().getString("message.menu.items.invite"));
 			playerlist.setItemMeta(playerlistM);
 			
 			ItemStack  border = new ItemStack(Material.BEACON, 1);
 			ItemMeta borderM = border.getItemMeta();
-			borderM.setDisplayName("Gerer la limite de votre map");
+			borderM.setDisplayName(main.getConfig().getString("message.menu.items.border"));
 			border.setItemMeta(borderM);
 			
 			ItemStack  gamemode = new ItemStack(Material.COMPASS, 1);
 			ItemMeta gamemodeM = gamemode.getItemMeta();
-			gamemodeM.setDisplayName("Gerer le mode de jeux(Survie, Créatif)");
+			gamemodeM.setDisplayName(main.getConfig().getString("message.menu.items.gamemode"));
 			gamemode.setItemMeta(gamemodeM);
 			
 			ItemStack  time = new ItemStack(Material.WATCH, 1);
 			ItemMeta timeM = time.getItemMeta();
-			timeM.setDisplayName("Gerer le mode le jour et la nuit");
+			timeM.setDisplayName(main.getConfig().getString("message.menu.items.time"));
 			time.setItemMeta(timeM);
 			
 			ItemStack  difi = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta difiM = difi.getItemMeta();
-			difiM.setDisplayName("Gerer la difficulté");
+			difiM.setDisplayName(main.getConfig().getString("message.menu.items.difficulty"));
 			difi.setItemMeta(difiM);
 			
 			ItemStack  quit = new ItemStack(Material.BED, 1);
 			ItemMeta quitM = quit.getItemMeta();
-			quitM.setDisplayName("Quitter votre monde");
+			quitM.setDisplayName(main.getConfig().getString("message.menu.items.quit"));
 			quit.setItemMeta(quitM);
 			
 			inv.setItem(3, gamemode);
