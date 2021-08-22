@@ -55,7 +55,6 @@ public class sclisten implements Listener {
 			Inventory inv = event.getInventory();
 			Player player = (Player) event.getWhoClicked();
 			String name = player.getName();
-
 			ItemStack current = event.getCurrentItem();		
 			if(current == null) return;
 			if(inv.getName().equalsIgnoreCase("§8SurvivalCreateMenu")) {
