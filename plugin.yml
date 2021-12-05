@@ -11,3 +11,6 @@ commands:
   scinvite:
     description: Inviter un joueur
     permission: sc.default
+  scspawn:
+    description: definir le point de spawn de son monde
+    permission: sc.default

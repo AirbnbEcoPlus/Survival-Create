@@ -25,6 +25,7 @@ public class SmInviteMenu implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		Player player = (Player) sender;
+		String name = player.getName();
 		String namePlayerSend = player.getName();
 		 if(!cmd.getName().equalsIgnoreCase("scinvite")) return false;
 		    if(args.length == 0) { 
@@ -39,15 +40,23 @@ public class SmInviteMenu implements CommandExecutor {
 				ItemMeta publicworldM = publicworld.getItemMeta();
 				publicworldM.setDisplayName("Rejoindre un Monde en Public");
 				publicworld.setItemMeta(publicworldM);
-				
+				if(main.getConfig().get("arenas." + name + "SurvivalCreateWorld") == null) {
 				ItemStack switchworld = new ItemStack(Material.EMERALD, 1);
 				ItemMeta switchworldM = switchworld.getItemMeta();
 				switchworldM.setDisplayName("Mettre votre monde en public");
 				switchworld.setItemMeta(switchworldM);
+				invinv.setItem(6, switchworld);
+				}else {
+					ItemStack switchworld = new ItemStack(Material.REDSTONE, 1);
+					ItemMeta switchworldM = switchworld.getItemMeta();
+					switchworldM.setDisplayName("Mettre votre monde en privé");
+					switchworld.setItemMeta(switchworldM);
+					invinv.setItem(6, switchworld);
+				}
 				
 				invinv.setItem(2, invite);
 				invinv.setItem(4, publicworld);
-				invinv.setItem(6, switchworld);
+				
 				player.openInventory(invinv);
 		    } else if(args.length == 1) {
 		        String playerName = args[0];

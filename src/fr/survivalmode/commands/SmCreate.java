@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.survivalmode.Main;
+import net.md_5.bungee.api.ChatColor;
 
 public class SmCreate implements CommandExecutor {
 
@@ -27,58 +28,64 @@ public class SmCreate implements CommandExecutor {
 			
 			ItemStack  create = new ItemStack(Material.GRASS, 1);
 			ItemMeta createM = create.getItemMeta();
-			createM.setDisplayName(main.getConfig().getString("message.menu.items.create"));
+			createM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.create"));
 			create.setItemMeta(createM);
 			
 			ItemStack  tp = new ItemStack(Material.ENDER_PEARL, 1);
 			ItemMeta tpM = tp.getItemMeta();
-			tpM.setDisplayName(main.getConfig().getString("message.menu.items.teleport"));
+			tpM.setDisplayName(ChatColor.GOLD +main.getConfig().getString("message.menu.items.teleport"));
 			tp.setItemMeta(tpM);
 			
 			ItemStack  delete = new ItemStack(Material.BARRIER, 1);
 			ItemMeta deleteM = delete.getItemMeta();
-			deleteM.setDisplayName(main.getConfig().getString("message.menu.items.delete"));
+			deleteM.setDisplayName(ChatColor.GOLD +main.getConfig().getString("message.menu.items.delete"));
 			delete.setItemMeta(deleteM);
 			
 			ItemStack  playerlist = new ItemStack(Material.JACK_O_LANTERN, 1);
 			ItemMeta playerlistM = playerlist.getItemMeta();
-			playerlistM.setDisplayName(main.getConfig().getString("message.menu.items.invite"));
+			playerlistM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.invite"));
 			playerlist.setItemMeta(playerlistM);
 			
 			ItemStack  border = new ItemStack(Material.BEACON, 1);
 			ItemMeta borderM = border.getItemMeta();
-			borderM.setDisplayName(main.getConfig().getString("message.menu.items.border"));
+			borderM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.border"));
 			border.setItemMeta(borderM);
+			
 			
 			ItemStack  gamemode = new ItemStack(Material.COMPASS, 1);
 			ItemMeta gamemodeM = gamemode.getItemMeta();
-			gamemodeM.setDisplayName(main.getConfig().getString("message.menu.items.gamemode"));
+			gamemodeM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.gamemode"));
 			gamemode.setItemMeta(gamemodeM);
 			
 			ItemStack  time = new ItemStack(Material.WATCH, 1);
 			ItemMeta timeM = time.getItemMeta();
-			timeM.setDisplayName(main.getConfig().getString("message.menu.items.time"));
+			timeM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.time"));
 			time.setItemMeta(timeM);
 			
 			ItemStack  difi = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta difiM = difi.getItemMeta();
-			difiM.setDisplayName(main.getConfig().getString("message.menu.items.difficulty"));
+			difiM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.difficulty"));
 			difi.setItemMeta(difiM);
+			
+			
+			
+			
+			
 			
 			ItemStack  quit = new ItemStack(Material.BED, 1);
 			ItemMeta quitM = quit.getItemMeta();
-			quitM.setDisplayName(main.getConfig().getString("message.menu.items.quit"));
+			quitM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.quit"));
 			quit.setItemMeta(quitM);
 			
-			inv.setItem(3, gamemode);
 			inv.setItem(11, create);
 			inv.setItem(13, tp);
 			inv.setItem(15, delete);
 			inv.setItem(23, playerlist);
 			inv.setItem(21, border);
-			inv.setItem(4, difi);
-			inv.setItem(5, time);
 			inv.setItem(22, quit);
+			inv.setItem(8, gamemode);
+			inv.setItem(17, time);
+			inv.setItem(26, difi);
 			player.openInventory(inv);
 			
 		}
