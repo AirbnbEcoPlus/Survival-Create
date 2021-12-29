@@ -30,7 +30,7 @@ public class WorldManager {
 	public void inventoryPublic(Player player) {
 		int counternumber = 0;
 		
-		Inventory invworlds = Bukkit.createInventory(null, 27, "ยง2SurvivalCreateWorlds");
+		Inventory invworlds = Bukkit.createInventory(null, 27, "ง2SurvivalCreateWorlds");
 		main.GetWorldList();
 	for(World worldz : worlds) {
 		if(ifWorldIsLoaded(worldz.getWorldName()) == true) {
@@ -67,7 +67,14 @@ public class WorldManager {
 		}
 		return null;
 	}
+	public boolean ifWorldIsPublic(Player player) {
+		for(World worldz : worlds) {
+			if(worldz.getWorldIsPublic() == true) {
+				
+			}
+	}
+		return false;
 	
 	
-	
+	}
 }

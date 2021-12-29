@@ -29,7 +29,7 @@ public class SmInviteMenu implements CommandExecutor {
 		String namePlayerSend = player.getName();
 		 if(!cmd.getName().equalsIgnoreCase("scinvite")) return false;
 		    if(args.length == 0) { 
-		    	Inventory invinv = Bukkit.createInventory(null, 9, "ยง8SurvivalCreateInvite");
+		    	Inventory invinv = Bukkit.createInventory(null, 9, "ง8SurvivalCreateInvite");
 				
 				ItemStack invite = new ItemStack(Material.BED, 1);
 				ItemMeta inviteM = invite.getItemMeta();
@@ -65,7 +65,7 @@ public class SmInviteMenu implements CommandExecutor {
 		            sender.sendMessage("'"+playerName+"' est Hors Ligne!");
 		        }
 		        if (target.getWorld().getName().equalsIgnoreCase("world")) {
-		        	Inventory invinvaccept = Bukkit.createInventory(null, 9, "ยง8SurvivalCreateInviteDemande");
+		        	Inventory invinvaccept = Bukkit.createInventory(null, 9, "ง8SurvivalCreateInviteDemande");
 					
 					ItemStack accept = new ItemStack(Material.EMERALD_BLOCK, 1);
 					ItemMeta acceptM = accept.getItemMeta();
@@ -83,7 +83,7 @@ public class SmInviteMenu implements CommandExecutor {
 					main.PlayerTp.put("target", namePlayerSend);
 					target.openInventory(invinvaccept);
 		        }else 
-		        	player.sendMessage("ยง2Ce joueur n'est pas present dans le spawn du [GAMEMODE]");
+		        	player.sendMessage("ง2Ce joueur n'est pas present dans le spawn du [GAMEMODE]");
               
 		        
 		    } else if(args.length == 2) {

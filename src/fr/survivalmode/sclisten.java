@@ -62,12 +62,12 @@ public class sclisten implements Listener {
 			String name = player.getName();
 			ItemStack current = event.getCurrentItem();		
 			if(current == null) return;
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
 				if(current.getType() == Material.GRASS) {
 					event.setCancelled(true);
 					player.closeInventory();
 					
-					Inventory invseed = Bukkit.createInventory(null, 27, "ยง8SurvivalCreateSeed");
+					Inventory invseed = Bukkit.createInventory(null, 27, "ง8SurvivalCreateSeed");
 					ItemStack seednormal = new ItemStack(Material.DIRT, 1);
 					ItemMeta seednormalM = seednormal.getItemMeta();
 					seednormalM.setDisplayName("Monde normal");
@@ -105,7 +105,7 @@ public class sclisten implements Listener {
 
 				}
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateSeed")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateSeed")) {
 				if(current.getType() == Material.WOOD_PLATE) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -123,7 +123,7 @@ public class sclisten implements Listener {
 					
 				}
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateSeed")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateSeed")) {
 				if(current.getType() == Material.WOOD_PLATE) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -131,7 +131,7 @@ public class sclisten implements Listener {
 				}
 			}
 			
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateSeed")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateSeed")) {
 				if(current.getType() == Material.DIRT) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -174,7 +174,7 @@ public class sclisten implements Listener {
 					
 				}
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateSeed")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateSeed")) {
 				if(current.getType() == Material.BEDROCK) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -188,14 +188,14 @@ public class sclisten implements Listener {
 			
 			
 
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateInviteDemande")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateInviteDemande")) {
 				if(current.getType() == Material.EMERALD_BLOCK) {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tp " + name + " " + main.PlayerTp.get("target"));
 					player.sendMessage(ChatColor.GREEN + main.getConfig().getString("message.menu.answerResponse.tpaccept"));
 					player.closeInventory();	
 	}
 }
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateTime")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateTime")) {
 				if(current.getType() == Material.PUMPKIN) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -208,7 +208,7 @@ public class sclisten implements Listener {
 					 }
 				}
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateTime")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateTime")) {
 				if(current.getType() == Material.JACK_O_LANTERN) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -223,7 +223,7 @@ public class sclisten implements Listener {
 			}
 			
 				
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
 				if(current.getType() == Material.ENDER_PEARL) {
 					if (!player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
 					event.setCancelled(true);
@@ -243,7 +243,7 @@ public class sclisten implements Listener {
 		
    			}
   }
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
 				if(current.getType() == Material.BED) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -257,11 +257,11 @@ public class sclisten implements Listener {
    			}
   }
 			
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
 				if(current.getType() == Material.COMPASS) {
 					event.setCancelled(true);
 					player.closeInventory();
-					Inventory invGamemode = Bukkit.createInventory(null, 9, "ยง8SurvivalCreateGamemode");
+					Inventory invGamemode = Bukkit.createInventory(null, 9, "ง8SurvivalCreateGamemode");
 					ItemStack survival = new ItemStack(Material.CHEST, 1);
 					ItemMeta survivalM = survival.getItemMeta();
 					survivalM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.survival"));
@@ -289,12 +289,12 @@ public class sclisten implements Listener {
 					player.openInventory(invGamemode);
 				}
 		}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
 			if(current.getType() == Material.WATCH) {
 				event.setCancelled(true);
 				player.closeInventory();
 				
-				Inventory invtime = Bukkit.createInventory(null, 27, "ยง8SurvivalCreateTime");
+				Inventory invtime = Bukkit.createInventory(null, 27, "ง8SurvivalCreateTime");
 				ItemStack day = new ItemStack(Material.JACK_O_LANTERN, 1);
 				ItemMeta dayM = day.getItemMeta();
 				dayM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.day"));
@@ -314,12 +314,12 @@ public class sclisten implements Listener {
 
 			}
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
 				if(current.getType() == Material.DIAMOND_CHESTPLATE) {
 					event.setCancelled(true);
 					player.closeInventory();
 					
-					Inventory invdifi = Bukkit.createInventory(null, 27, "ยง8SurvivalCreateDifficulty");
+					Inventory invdifi = Bukkit.createInventory(null, 27, "ง8SurvivalCreateDifficulty");
 					ItemStack peace = new ItemStack(Material.IRON_BLOCK, 1);
 					ItemMeta peaceM = peace.getItemMeta();
 					peaceM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.peacefull"));
@@ -351,7 +351,7 @@ public class sclisten implements Listener {
 			
 			
 			
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateGamemode")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateGamemode")) {
 				if(current.getType() == Material.CHEST) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -372,7 +372,7 @@ public class sclisten implements Listener {
 				}
 				
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateGamemode")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateGamemode")) {
 				if(current.getType() == Material.BRICK) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -394,7 +394,7 @@ public class sclisten implements Listener {
 				}
 				
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateGamemode")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateGamemode")) {
 				if(current.getType() == Material.EYE_OF_ENDER) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -416,7 +416,7 @@ public class sclisten implements Listener {
 				}
 				
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateGamemode")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateGamemode")) {
 				if(current.getType() == Material.BOOKSHELF) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -438,11 +438,11 @@ public class sclisten implements Listener {
 				}
 				
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
 				if(current.getType() == Material.JACK_O_LANTERN) {
 					event.setCancelled(true);
 					player.closeInventory();
-					Inventory invinv = Bukkit.createInventory(null, 9, "ยง8SurvivalCreateInvite");
+					Inventory invinv = Bukkit.createInventory(null, 9, "ง8SurvivalCreateInvite");
 					
 					ItemStack invite = new ItemStack(Material.BED, 1);
 					ItemMeta inviteM = invite.getItemMeta();
@@ -454,27 +454,38 @@ public class sclisten implements Listener {
 					publicworldM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.joinpublicworld"));
 					publicworld.setItemMeta(publicworldM);
 					
-					ItemStack switchworld = new ItemStack(Material.EMERALD, 1);
-					ItemMeta switchworldM = switchworld.getItemMeta();
-					switchworldM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.setpublicworld"));
-					switchworld.setItemMeta(switchworldM);
+					
+					
+					if(!main.worldManager.ifWorldIsPublic(player) == true) {
+						ItemStack switchworld = new ItemStack(Material.EMERALD, 1);
+						ItemMeta switchworldM = switchworld.getItemMeta();
+						switchworldM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.setpublicworld"));
+						switchworld.setItemMeta(switchworldM);
+						invinv.setItem(6, switchworld);
+					}else {
+						ItemStack switchworld = new ItemStack(Material.REDSTONE_BLOCK, 1);
+						ItemMeta switchworldM = switchworld.getItemMeta();
+						switchworldM.setDisplayName(ChatColor.GOLD + main.getConfig().getString("message.menu.items.setunpublicworld"));
+						switchworld.setItemMeta(switchworldM);
+						invinv.setItem(6, switchworld);
+					}
 					
 					invinv.setItem(2, invite);
 					invinv.setItem(4, publicworld);
-					invinv.setItem(6, switchworld);
+					
 					player.openInventory(invinv);
 					
 					
 				}
 			}
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateInvite")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateInvite")) {
 				if(current.getType() == Material.BED) {
 					event.setCancelled(true);
 					player.closeInventory();
 					player.sendMessage(ChatColor.GREEN + main.getConfig().getString("message.menu.answerResponse.invitefriendhelp"));
    			}
   }
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateInvite")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateInvite")) {
 				if(current.getType() == Material.COMPASS) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -483,7 +494,7 @@ public class sclisten implements Listener {
 					
    			}
   }
-			if(inv.getName().equalsIgnoreCase("ยง2SurvivalCreateWorlds")) {
+			if(inv.getName().equalsIgnoreCase("ง2SurvivalCreateWorlds")) {
 				if(current.getType() == Material.GRASS) {
 					event.setCancelled(true);
 					String worldName = current.getItemMeta().getDisplayName();
@@ -493,7 +504,7 @@ public class sclisten implements Listener {
 				}
 			}
 			
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateDifficulty")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateDifficulty")) {
 				if(current.getType() == Material.IRON_BLOCK) {
 					player.closeInventory();
 					if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
@@ -505,7 +516,7 @@ public class sclisten implements Listener {
 					 }
 				}
 	  }  
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateDifficulty")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateDifficulty")) {
 				if(current.getType() == Material.GOLD_BLOCK) {
 					player.closeInventory();
 					if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
@@ -517,7 +528,7 @@ public class sclisten implements Listener {
 					 }
 				}
 	 }
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateDifficulty")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateDifficulty")) {
 				if(current.getType() == Material.DIAMOND_BLOCK) {
 					player.closeInventory();
 					if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
@@ -529,7 +540,7 @@ public class sclisten implements Listener {
 					 }
 				}
 	 }
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateDifficulty")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateDifficulty")) {
 				if(current.getType() == Material.EMERALD_BLOCK) {
 					player.closeInventory();
 					if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
@@ -542,7 +553,7 @@ public class sclisten implements Listener {
 					 }
 				}
 	 }
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
 				if(current.getType() == Material.BARRIER) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -569,8 +580,8 @@ public class sclisten implements Listener {
 					
    
   
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateMenu")) {
-				Inventory invborder = Bukkit.createInventory(null, 27, "ยง8SurvivalCreateBorder");
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateMenu")) {
+				Inventory invborder = Bukkit.createInventory(null, 27, "ง8SurvivalCreateBorder");
 				if(current.getType() == Material.BEACON) {
 					event.setCancelled(true);
 					player.closeInventory();
@@ -607,7 +618,7 @@ public class sclisten implements Listener {
 			
 	   
 				
-			if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateBorder")) {
+			if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateBorder")) {
 			if(current.getType() == Material.GLASS) {
 						player.closeInventory();
 						World world = Bukkit.getWorld(name + "SurvivalCreateWorld");
@@ -623,7 +634,7 @@ public class sclisten implements Listener {
     }
 	   
 				
-		if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateBorder")) {
+		if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateBorder")) {
 			if(current.getType() == Material.IRON_BLOCK) {
 				if(player.hasPermission("sc.vip")) {
 					player.closeInventory();
@@ -641,7 +652,7 @@ public class sclisten implements Listener {
 		}
 
 
-		if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateBorder")) {
+		if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateBorder")) {
 			if(current.getType() == Material.GOLD_BLOCK) {
 				if(player.hasPermission("sc.vip2")) {
 					player.closeInventory();
@@ -658,7 +669,7 @@ public class sclisten implements Listener {
     }
    }		
 
-		if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateBorder")) {
+		if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateBorder")) {
 			if(current.getType() == Material.DIAMOND_BLOCK) {
 				if(player.hasPermission("sc.vip3")) {
 					player.closeInventory();
@@ -675,7 +686,7 @@ public class sclisten implements Listener {
     }	   
    }
   
-		if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateBorder")) {
+		if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateBorder")) {
 			if(current.getType() == Material.BARRIER) {
 				player.closeInventory();
 				player.sendMessage(ChatColor.GREEN + main.getConfig().getString("message.menu.answerResponse.nopermission"));

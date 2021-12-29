@@ -15,12 +15,14 @@ public class World {
 		private String worldName;
 		private String playerhost;
 		private boolean isLoaded;
+		private boolean isPublic;
 		public World(Location locspawn, int maxplayer,String playerhost, String worldName, boolean isLoaded) {
 			this.locspawn = locspawn;
 			this.players = new ArrayList<>();
 			this.playerhost = playerhost;
 			this.worldName= worldName;
 			this.isLoaded = isLoaded;
+			this.isPublic = isLoaded;
 		}
 		public Location getLocSpawn() {
 			return locspawn;
@@ -38,7 +40,9 @@ public class World {
 		public boolean getWorldIsLoaded(){
 			return isLoaded;
 		}
-		
+		public boolean getWorldIsPublic(){
+			return isPublic;
+		}
 }
 
 

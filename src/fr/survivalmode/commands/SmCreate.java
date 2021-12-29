@@ -24,7 +24,7 @@ public class SmCreate implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if(args.length == 0) { 
 			Player player = (Player) sender;
-			Inventory inv = Bukkit.createInventory(null, 27, "ยง8SurvivalCreateMenu");
+			Inventory inv = Bukkit.createInventory(null, 27, "ง8SurvivalCreateMenu");
 			
 			ItemStack  create = new ItemStack(Material.GRASS, 1);
 			ItemMeta createM = create.getItemMeta();

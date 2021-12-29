@@ -24,8 +24,10 @@ public class scshare implements Listener {
 		String name = player.getName();
 		ItemStack current = event.getCurrentItem();		
 		if(current == null) return;
-		if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateInvite")) {
-			if(current.getType() == Material.REDSTONE) {
+		if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateInvite")) {
+			if(current.getType() == Material.REDSTONE_BLOCK) {
+				main.getConfig().set("arenas." + name + "SurvivalCreateWorld" , null);
+				main.saveConfig();
 				
 			}
 			if(current.getType() == Material.EMERALD) {
@@ -48,6 +50,9 @@ public class scshare implements Listener {
 				}
 				
 				
+			}else if(current.getType() == Material.REDSTONE_BLOCK) {
+				main.getConfig().set("arenas." + name + "SurvivalCreateWorld", null);
+				player.sendMessage("Votre monde n'est plus en public");
 			}
 	}
 		
