@@ -22,7 +22,8 @@ public class scshare implements Listener {
 		Inventory inv = event.getInventory();
 		Player player = (Player) event.getWhoClicked();
 		String name = player.getName();
-		ItemStack current = event.getCurrentItem();		
+		ItemStack current = event.getCurrentItem();
+
 		if(current == null) return;
 		if(inv.getName().equalsIgnoreCase("§8SurvivalCreateInvite")) {
 			if(current.getType() == Material.REDSTONE_BLOCK) {
