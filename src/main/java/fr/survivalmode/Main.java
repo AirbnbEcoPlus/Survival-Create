@@ -32,7 +32,6 @@ public class Main extends JavaPlugin {
 		getCommand("scspawn").setExecutor(new scdefspawn(this));
 		if(getServer().getPluginManager().getPlugin("VoidGen") != null) {
 			VoidGeneratorEnable = true;
-			
 		}
 		
   }

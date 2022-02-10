@@ -20,21 +20,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import net.md_5.bungee.api.ChatColor;
 
+import static org.bukkit.Bukkit.getServer;
 
 
-
-public class sclisten implements Listener { 
-	 
-		        
-
-	        	
-	        	
-	        
-	        
-			
-			
-	   
-	
+public class sclisten implements Listener {
 	private Main main;
 	
 	   public sclisten(Main main) {
@@ -45,12 +34,13 @@ public class sclisten implements Listener {
 	        Player player = event.getPlayer();
 	        String name = player.getName();
 	        if (player.getWorld().getName().equalsIgnoreCase(name + "SurvivalCreateWorld")) {
-	        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld");
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld_nether");
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld_the_end");
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld_nether");
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld_the_end");
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world unload " + name + "SurvivalCreateWorld");
+			getServer().unloadWorld(name + "SurvivalCreateWorld", true);
+			if (getServer().getWorlds().contains(name + "SurvivalCreateWorld_nether")){
+				getServer().unloadWorld(name + "SurvivalCreateWorld_nether", true);
+			}
+				if (getServer().getWorlds().contains(name + "SurvivalCreateWorld_the_end")) {
+					getServer().unloadWorld(name + "SurvivalCreateWorld_the_end", true);
+				}
 			main.getConfig().set("arenas." + name + "SurvivalCreateWorld.isLoaded", false);
 			main.saveConfig();
 	   }
