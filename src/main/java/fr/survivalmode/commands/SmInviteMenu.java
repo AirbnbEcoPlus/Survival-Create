@@ -29,7 +29,7 @@ public class SmInviteMenu implements CommandExecutor {
 		String namePlayerSend = player.getName();
 		 if(!cmd.getName().equalsIgnoreCase("scinvite")) return false;
 		    if(args.length == 0) { 
-		    	Inventory invinv = Bukkit.createInventory(null, 9, "§8SurvivalCreateInvite");
+		    	Inventory invinv = Bukkit.createInventory(null, 9, "Â§8SurvivalCreateInvite");
 				
 				ItemStack invite = new ItemStack(Material.BED, 1);
 				ItemMeta inviteM = invite.getItemMeta();
@@ -49,7 +49,7 @@ public class SmInviteMenu implements CommandExecutor {
 				}else {
 					ItemStack switchworld = new ItemStack(Material.REDSTONE, 1);
 					ItemMeta switchworldM = switchworld.getItemMeta();
-					switchworldM.setDisplayName("Mettre votre monde en privÃ©");
+					switchworldM.setDisplayName("Mettre votre monde en privÃ©e");
 					switchworld.setItemMeta(switchworldM);
 					invinv.setItem(6, switchworld);
 				}
@@ -65,7 +65,7 @@ public class SmInviteMenu implements CommandExecutor {
 		            sender.sendMessage("'"+playerName+"' est Hors Ligne!");
 		        }
 		        if (target.getWorld().getName().equalsIgnoreCase("world")) {
-		        	Inventory invinvaccept = Bukkit.createInventory(null, 9, "§8SurvivalCreateInviteDemande");
+		        	Inventory invinvaccept = Bukkit.createInventory(null, 9, "Â§8SurvivalCreateInviteDemande");
 					
 					ItemStack accept = new ItemStack(Material.EMERALD_BLOCK, 1);
 					ItemMeta acceptM = accept.getItemMeta();
@@ -83,7 +83,7 @@ public class SmInviteMenu implements CommandExecutor {
 					main.PlayerTp.put("target", namePlayerSend);
 					target.openInventory(invinvaccept);
 		        }else 
-		        	player.sendMessage("§2Ce joueur n'est pas present dans le spawn du [GAMEMODE]");
+		        	player.sendMessage("Â§2Ce joueur n'est pas present dans le spawn du [GAMEMODE]");
               
 		        
 		    } else if(args.length == 2) {

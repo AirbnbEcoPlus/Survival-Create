@@ -37,6 +37,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.github.azbh111:spigot-1.8.8:R" level="project" />
   </component>
 </module>

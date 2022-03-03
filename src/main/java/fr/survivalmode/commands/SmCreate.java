@@ -1,6 +1,7 @@
 package fr.survivalmode.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.survivalmode.Main;
-import net.md_5.bungee.api.ChatColor;
+
 
 public class SmCreate implements CommandExecutor {
 
@@ -24,7 +25,7 @@ public class SmCreate implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if(args.length == 0) { 
 			Player player = (Player) sender;
-			Inventory inv = Bukkit.createInventory(null, 27, "ง8SurvivalCreateMenu");
+			Inventory inv = Bukkit.createInventory(null, 27, "ยง8SurvivalCreateMenu");
 			
 			ItemStack  create = new ItemStack(Material.GRASS, 1);
 			ItemMeta createM = create.getItemMeta();

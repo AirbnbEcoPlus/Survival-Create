@@ -26,8 +26,12 @@ public class Main extends JavaPlugin {
 		saveDefaultConfig();
 		System.out.println("Merci d'utiliser Survival Create");
 		getCommand("sc").setExecutor(new SmCreate(this));
-		getServer().getPluginManager().registerEvents(new sclisten(this), this);
-		getServer().getPluginManager().registerEvents(new scshare(this), this);
+		getServer().getPluginManager().registerEvents(new scListen(this), this);
+		getServer().getPluginManager().registerEvents(new scShare(this), this);
+		getServer().getPluginManager().registerEvents(new scListenCreate(this), this);
+		getServer().getPluginManager().registerEvents(new scListenBorder(this), this);
+		getServer().getPluginManager().registerEvents(new scListenInvite(this), this);
+		getServer().getPluginManager().registerEvents(new scListenManager(this), this);
 		getCommand("scinvite").setExecutor(new SmInviteMenu(this));
 		getCommand("scspawn").setExecutor(new scdefspawn(this));
 		if(getServer().getPluginManager().getPlugin("VoidGen") != null) {
@@ -52,10 +56,8 @@ public class Main extends JavaPlugin {
 	    	World worlds = new World(locspawn, maxplayer, playerhost, worldName, isLoaded);
 	    	worldManager.addWorld(worlds);
 	    }
-	
 	}
 	public WorldManager getArenaManager() {
 		return worldManager;
 	}
-	
 }

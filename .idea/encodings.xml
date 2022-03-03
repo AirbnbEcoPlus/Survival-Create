@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/config.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugin.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/commands/SmCreate.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/commands/SmInviteMenu.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/commands/scdefspawn.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/scListen.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/scListenBorder.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/scListenCreate.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/scListenInvite.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/scListenManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/scShare.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/world/World.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/survivalmode/world/WorldManager.java" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>
 </project>

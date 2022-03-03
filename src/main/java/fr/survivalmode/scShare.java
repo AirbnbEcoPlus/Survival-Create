@@ -1,6 +1,7 @@
 package fr.survivalmode;
 
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,12 +10,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import net.md_5.bungee.api.ChatColor;
 
-public class scshare implements Listener {
+public class scShare implements Listener {
 
 	private Main main;
-	public scshare(Main main) {
+	public scShare(Main main) {
 	this.main = main;
 	}
 	@EventHandler
@@ -25,7 +25,7 @@ public class scshare implements Listener {
 		ItemStack current = event.getCurrentItem();
 
 		if(current == null) return;
-		if(inv.getName().equalsIgnoreCase("ง8SurvivalCreateInvite")) {
+		if(inv.getName().equalsIgnoreCase("ยง8SurvivalCreateInvite")) {
 			if(current.getType() == Material.REDSTONE_BLOCK) {
 				main.getConfig().set("arenas." + name + "SurvivalCreateWorld" , null);
 				main.saveConfig();
