@@ -9,6 +9,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.io.File;
+
+import static org.bukkit.Bukkit.getServer;
+
 public class scListenCreate implements Listener{
     private Main main;
     public scListenCreate(Main main) {
@@ -136,6 +140,11 @@ public class scListenCreate implements Listener{
                     event.setCancelled(true);
                     player.closeInventory();
 
+                    Bukkit.getServer().getWorlds().add(Bukkit.getWorld(name + "SurvivalCreateWorld"));
+                    Bukkit.getServer().getWorlds().add(Bukkit.getWorld(name + "SurvivalCreateWorld_nether"));
+                    Bukkit.getServer().getWorlds().add(Bukkit.getWorld(name + "SurvivalCreateWorld_the_end"));
+                    Location loc = new Location(getServer().getWorld(name + "SurvivalCreateWorld"), getServer().getWorld(name + "SurvivalCreateWorld").getSpawnLocation().getX(), getServer().getWorld(name + "SurvivalCreateWorld").getSpawnLocation().getY(), getServer().getWorld(name + "SurvivalCreateWorld").getSpawnLocation().getZ());
+                    player.teleport(loc);
                     main.getConfig().set("arenas." + name + "SurvivalCreateWorld.isLoaded", true);
                     main.saveConfig();
                 }else {
@@ -148,19 +157,32 @@ public class scListenCreate implements Listener{
             if(current.getType() == Material.BARRIER) {
                 event.setCancelled(true);
                 player.closeInventory();
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world load " + name + "SurvivalCreateWorld");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world load " + name + "SurvivalCreateWorld_nether");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world load " + name + "SurvivalCreateWorld_the_end");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld_nether");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world evacuate " + name + "SurvivalCreateWorld_the_end");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world delete " + name + "SurvivalCreateWorld");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world delete " + name + "SurvivalCreateWorld_nether");
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "world delete " + name + "SurvivalCreateWorld_the_end");
+                Bukkit.getServer().unloadWorld(name + "SurvivalCreateWorld", true);
+                Bukkit.getServer().unloadWorld(name + "SurvivalCreateWorld_nether", true);
+                Bukkit.getServer().unloadWorld(name + "SurvivalCreateWorld_the_end", true);
+                File deleteWorld = Bukkit.getWorld(name + "SurvivalCreateWorld").getWorldFolder();
+                deleteWorld(deleteWorld);
+                File deleteWorldNether = Bukkit.getWorld(name + "SurvivalCreateWorld_nether").getWorldFolder();
+                deleteWorld(deleteWorldNether);
+                File deleteWorldEnd = Bukkit.getWorld(name + "SurvivalCreateWorld_the_end").getWorldFolder();
+                deleteWorld(deleteWorldEnd);
                 main.getConfig().set("arenas." + name + "SurvivalCreateWorld", null);
                 main.saveConfig();
                 player.sendMessage(ChatColor.GREEN + main.getConfig().getString("message.menu.answerResponse.deleteworld"));
             }
         }
+    }
+    public boolean deleteWorld(File path) {
+        if(path.exists()) {
+            File files[] = path.listFiles();
+            for(int i=0; i<files.length; i++) {
+                if(files[i].isDirectory()) {
+                    deleteWorld(files[i]);
+                } else {
+                    files[i].delete();
+                }
+            }
+        }
+        return(path.delete());
     }
 }

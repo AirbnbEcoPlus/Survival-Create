@@ -2,7 +2,6 @@ name: SurvivalCreate
 version: 1.0
 author: Krfcm2
 main: fr.survivalmode.Main
-depend: [My_Worlds]
 softdepend: [VoidGenerator]
 commands:
   sc:
