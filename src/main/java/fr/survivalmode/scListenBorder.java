@@ -75,9 +75,6 @@ public class scListenBorder implements Listener {
                     invborder.setItem(16, bordervip3);
                 }
                 invborder.setItem(10, borderdefault);
-
-
-
                 player.openInventory(invborder);
 
             }
